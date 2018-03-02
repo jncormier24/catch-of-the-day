@@ -54,12 +54,6 @@ class App extends React.Component {
     this.updateFish(key, null)
   }
 
-  loadSampleFishes = () => {
-    this.setState({
-      fishes
-    })
-  }
-
   addToOrder = (fish) => {
     let order = {...this.state.order}
     order[fish] = order[fish] + 1 || 1
@@ -67,6 +61,21 @@ class App extends React.Component {
       order
     })
   }
+
+  removeFromOrder = (key) => {
+    let order = {...this.state.order}
+    delete order[key]
+    this.setState({
+      order
+    })
+  }
+
+  loadSampleFishes = () => {
+    this.setState({
+      fishes
+    })
+  }
+
 
   render () {
     return (
@@ -83,7 +92,10 @@ class App extends React.Component {
             }
           </ul>
         </div>
-        <Order fishes={this.state.fishes} order={this.state.order} />
+        <Order 
+          removeFromOrder={this.removeFromOrder}
+          fishes={this.state.fishes} 
+          order={this.state.order} />
         <Inventory 
           addFish={this.addFish}
           updateFish={this.updateFish}
