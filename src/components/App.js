@@ -50,6 +50,10 @@ class App extends React.Component {
     })
   }
   
+  deleteFish = (key) => {
+    this.updateFish(key, null)
+  }
+
   loadSampleFishes = () => {
     this.setState({
       fishes
@@ -83,8 +87,10 @@ class App extends React.Component {
         <Inventory 
           addFish={this.addFish}
           updateFish={this.updateFish}
+          deleteFish={this.deleteFish}
           fishes={this.state.fishes}
-          loadSampleFishes={this.loadSampleFishes}/>
+          loadSampleFishes={this.loadSampleFishes}
+          />
       </div>
     )
   }
